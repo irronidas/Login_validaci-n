@@ -16,8 +16,6 @@
   <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-
-
 <form action="index.php" method="post">
   <h1>Login</h1>
   <label for="">Tipo de Usuario: </label>
@@ -26,11 +24,11 @@
     <option value="Administrador">Administrador</option>
   </select>
   <label for="">Nombre: </label>
-  <input type="text" name="Nombre">
+  <input type="text" name="Nombre" value="<?php if(isset($nombre)) echo $nombre ?>">
   <label for="">Apellido: </label>
-  <input type="text" name="Apellido">
+  <input type="text" name="Apellido" value="<?php if(isset($apellido)) echo $apellido ?>">
   <label for="">Codigo trabajador: </label>
-  <input type="text" name="Codigo">
+  <input type="text" name="Codigo" value="<?php if(isset($cod_tra)) echo $cod_tra ?>">
   <input type="submit" value="Ingresar" name="btn">
   <?php
     include("Validar.php");
