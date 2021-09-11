@@ -1,9 +1,7 @@
 <?php
    if(isset($_POST['btn'])) {
-    $nombre = $_POST['Nombre'];
-    $apellido = $_POST['Apellido'];
-    $cod_tra = $_POST['Codigo'];
-    $tipo = $_POST['Usuario']; 
+    $usuario=$_POST['Nombre'];
+    $Password=$_POST['contraseña'];
   } 
 ?>
 <!DOCTYPE html>
@@ -18,20 +16,18 @@
 <body>
 <form action="index.php" method="post">
   <h1>Login</h1>
-  <label for="">Tipo de Usuario: </label>
-  <select name="Usuario" id="">
-    <option value="Productivo">Productivo</option>
-    <option value="Administrador">Administrador</option>
-  </select>
+
   <label for="">Nombre: </label>
-  <input type="text" name="Nombre" value="<?php if(isset($nombre)) echo $nombre ?>">
-  <label for="">Apellido: </label>
-  <input type="text" name="Apellido" value="<?php if(isset($apellido)) echo $apellido ?>">
-  <label for="">Codigo trabajador: </label>
-  <input type="text" name="Codigo" value="<?php if(isset($cod_tra)) echo $cod_tra ?>">
+  <input type="text" name="Nombre" value="<?php if(isset($usuario)) echo $usuario ?>">
+  
+  <label for="">Contraseña: </label>
+  <input type="text" name="contraseña" value="<?php if(isset($Password)) echo $Password ?>">
+
   <input type="submit" value="Ingresar" name="btn">
+
+  <a style="margin: 400px" href="ayuda.php" class="enlace">Ayuda</a>
   <?php
-    include("Validar.php");
+     include("Validar.php");
   ?>
 </form>
 </body>

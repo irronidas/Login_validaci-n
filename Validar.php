@@ -1,50 +1,61 @@
 <?php
-  if (isset($_POST['btn'])){
+   if (isset($_POST['btn'])){
+    error_reporting(0);
+    $usuario=$_POST['Nombre'];
+    $Password=$_POST['contraseña'];
     
-    $patron2 = "/^[a-z]+$/i";
+    session_start();
+    $_SESSION['usuario']=$usuario;
+   
+    
+    include ("conection.php");
 
-    if (empty($nombre)){
-      echo "<p class='error'>* Falta Nombre </p>";
-    } else { 
-      if(strlen($nombre) > 15){
-        echo "<p class='error'>* El Nombre es demasiado largo </p>";
-      }else { 
-        if(preg_match($patron2, $nombre)){
-            
-        }else{
-            echo "<p class='error'>* Nombre no debe poseer números o carácter </p>";
-        }
-    }
-}
+    $query="SELECT nombre, pass, tipo FROM USUARIOS WHERE nombre='$usuario' and pass= md5('$Password')";
+    $resul = mysqli_query($con, $query);
 
+    $filas=mysqli_num_rows($resul);
 
-    if (empty($apellido)){
-        echo "<p class='error'>* Falta Edad </p>";
-      } else { 
-        if(strlen($apellido) > 15){
-            echo "<p class='error'>* El Apellido es demasiado largo </p>";
-        } else { 
-        if(preg_match($patron2, $apellido)){
-            
-        }else{
-            echo "<p class='error'>* Apellido no debe poseer números o carácter </p>";
-        }
-      }
-    }
+    $filas1=mysqli_fetch_assoc($resul);
+    
+    $tipo = $filas1['tipo'];
       
-
-
-    if (empty($cod_tra)){
-        echo "<p class='error'>* Falta Código trabajador </p>";
-      } else { 
-        if(strlen($cod_tra) > 3){
-            echo "<p class='error'>* El Código ingresada es demasiado largo </p>";
-      } else{
-        if(!is_numeric($cod_tra)){
-            echo "<p class='error'> El Código debe ser númerico </p>";
-            }
-        }
-
-      }  
+    if($filas>0 && $tipo == 1){
+      header("location:Admin.php");
+    }elseif ($filas>0 && $tipo == 2){
+      header("location:Operador.php");
+    }else{
+      echo "* Error de autenticación";
     }
+    mysqli_free_result($resul);
+    mysqli_close($con);
+
+    
+ 
+    
+      $patron2 = "/^[a-z]+$/i";
+  
+      if (empty($usuario)){
+        echo "<p class='error'>* Falta Nombre </p>";
+      } else { 
+        if(strlen($usuario) > 15){
+          echo "<p class='error'>* El Nombre es demasiado largo </p>";
+        }else { 
+          if(preg_match($patron2, $usuario)){
+              
+          }else{
+              echo "<p class='error'>* Nombre no debe poseer números o carácter </p>";
+          }
+      }
+  }
+  
+      if (empty($Password)){
+          echo "<p class='error'>* Falta Password</p>";
+        } else { 
+          if(strlen($Password) > 9){
+              echo "<p class='error'>* La Password ingresada es demasiado largo </p>";
+          }
+  
+        }  
+      }
+    
 ?>
