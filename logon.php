@@ -1,4 +1,5 @@
 <?php
+  session_start();
    if(isset($_POST['btn'])) {
     $usuario=$_POST['Nombre'];
     $Password=$_POST['contraseña'];
@@ -14,7 +15,7 @@
   <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-<form action="index.php" method="post">
+<form action="logon.php" method="post">
   <h1>Login</h1>
 
   <label for="">Nombre: </label>

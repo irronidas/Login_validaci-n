@@ -7,5 +7,5 @@ if($varsesion = null || $varsesion = ''){
     die();
 }
     session_destroy();
-    header("Location:index.php")
+    header("Location:Index.html")
 ?>

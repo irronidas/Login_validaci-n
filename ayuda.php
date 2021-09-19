@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ayuda</title>
     <link rel="stylesheet" href="estilos.css">
-    <a href="index.php" class="enlace">Volver</a>
+    <a href="logon.php" class="enlace">Volver</a>
 </head>
 <body>
     <h1>Manual de usuario:</h1>
